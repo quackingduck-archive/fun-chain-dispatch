@@ -1,0 +1,27 @@
+{
+  "name": "fun-chain-dispatch",
+  "version": "0.0.0",
+  "description": "HTTP dispatch functions to use with fun-chain",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quackingduck/fun-chain-dispatch"
+  },
+  "keywords": [
+    "chain",
+    "fun-chain",
+    "dispatch",
+    "http"
+  ],
+  "author": "Myles Byrne <myles@myles.id.au>",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/quackingduck/fun-chain-dispatch/issues"
+  },
+  "devDependencies": {
+    "tape": "~2.1.0"
+  }
+}
