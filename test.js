@@ -45,6 +45,30 @@ test('matcher not match (due to pathname)', function(t) {
 
 })
 
+var expMatcher = dispatch.matchers.forMethodAndPathname('get', '/foo/:bar')
+
+test('expresssion matcher not matched', function(t) {
+  t.plan(1)
+
+  expMatcher(
+      { method: 'GET', url: '/foo/bar/too-much' }
+    , function(matched){
+        t.notOk(matched)
+      })
+
+})
+
+test('expresssion matcher matched', function(t) {
+  t.plan(1)
+
+  expMatcher(
+      { method: 'GET', url: '/foo/baz' }
+    , function(match){
+        t.deepEqual(match, { bar: 'baz' })
+      })
+
+})
+
 test('call hanlder when matched', function(t) {
   t.plan(2)
 

@@ -39,9 +39,3 @@ dispatch.ifMatchElseNext(
     dispatch.matchers.any
   , serveNotFound )
 ```
-
----
-
-Todo:
-
-* Support sinatra-style url patterns and url "params" extraction, probably using the [path-to-regexp](https://npmjs.org/package/path-to-regexp) module

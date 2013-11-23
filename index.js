@@ -17,19 +17,25 @@ ns.ifMatchElseNext = function(matcherFn, handlerFn) {
   }
 }
 
-// ---
+// # Request Matchers
 
 var matchers = ns.matchers = {}
 
 matchers.any = function(req, callback) { callback(true) }
 
+var pathToRegexp = require('path-to-regexp')
+
 matchers.forMethodAndPathname = function(method, pathname, callback) {
+  var pathKeys = [],
+      pathExp  = pathToRegexp(pathname, pathKeys)
+
   method = method.toUpperCase()
   return function(req, callback) {
-    var matched =
-      method    === req.method &&
-      pathname  === rurl(req).pathname
-    callback(matched)
+    var match = method === req.method
+      , match = match && rurl(req).pathname.match(pathExp)
+      , match = match && makePathParams(pathKeys, match.slice(1))
+
+    callback(match)
   }
 }
 
@@ -38,6 +44,12 @@ var url = require('url')
 function rurl(req) {
   req._url = req._url || url.parse(req.url)
   return req._url
+}
+
+function makePathParams(keys, values) {
+  var keysAndValues = {}
+  keys.forEach(function(key, i) { keysAndValues[key.name] = values[i] })
+  return keysAndValues
 }
 
 // ---
