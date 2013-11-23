@@ -133,3 +133,15 @@ test('Porcelain API - method and pathname', function(t) {
   dispatch('get', '/foo', handler)(next, { method: 'GET', url: '/foo' }, {})
 
 })
+
+test('Porcelain API - method and path expression', function(t) {
+  t.plan(1)
+
+  var handler = function(req, res, params) {
+        t.deepEqual({ bar: 'baz' }, params)
+      }
+    , next = function() { t.fail() }
+
+  dispatch('get', '/foo/:bar', handler)(next, { method: 'GET', url: '/foo/baz' }, {})
+
+})

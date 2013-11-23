@@ -10,8 +10,8 @@ var ns = apiFn
 
 ns.ifMatchElseNext = function(matcherFn, handlerFn) {
   return function(next, req, res) {
-    matcherFn(req, function (matched) {
-      if (matched) handlerFn(req, res)
+    matcherFn(req, function (match) {
+      if (match) handlerFn(req, res, match)
       else next(req, res)
     })
   }
