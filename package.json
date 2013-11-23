@@ -1,6 +1,6 @@
 {
   "name": "fun-chain-dispatch",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "HTTP dispatch functions to use with fun-chain",
   "main": "index.js",
   "scripts": {
